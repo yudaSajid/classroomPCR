@@ -1,0 +1,114 @@
+5 Juli 2024
+Notes
+- Setting duration per material ✅
+- Medal didapatkan setelah 1 course selesai + dapat point
+- Medal ada Gold, Platinum, Silver✅
+- Jika poin >750, maka Gold. Platinum > 500. Silver > 250✅
+- Nutup akses classroom jika sudah selesai (Semester) = buatkan atr baru untuk is_published, is_operational sesuai dengan course_nya ✅ gantinya is_active
+- Tambahkan course_id dan quiz_id di point (null)✅
+- Project bisa lebih dari 1 dalam 1 course✅
+- Buat Challenge tergantung di course_id dan siswa optional untuk join✅
+- Assignment tidak selalu ada✅
+- Material -> Quiz -> Assignment (optional)✅
+- Task hanya upload link GDrive✅ tapi belum yg attempt
+
+- Point yang dikalkulasikan di Quiz berdasarkan quiz_attempt yang pertama kali
+- Notice percobaan quiz biar dosen bisa insert komen ✅
+- Leaderboard menampilkan tiap course ✅
+- Buat forum kayak ticket
+- didalam challenge ada task" yang harus ditambahkan. jika benar maka dapat point.
+- Task dan Assignment ada status (pending, scored, reject with reasons)
+- Buat tabel avatar dengan klasifikasinya seperti jenis, action
+- Badge buat kayak ke trigger karena apa
+- Badge otomatis ditambah jika duluan kerjakan quiz per Classroom dan course
+Penting
+- Buka chapter selanjutnya berdsasrakan quiz jika 100 ✅
+
+TODO:
+table dirubah medal, challenges, tasks, projects, points(di dump dulu) ✅
+
+composer require filament/filament:"^3.2.57" -W --ignore-platform-req=ext-zip
+https://github.com/yoeunes/toastr
+
+ Tables\Columns\TextColumn::make('priority')
+                ->formatStateUsing(function ($state) {
+                    return Priority::toSelectArray()[$state] ?? $state;
+                })
+                ->badge()
+                ->colors([
+                    'primary' => Priority::Medium,   // Menggunakan enum sebagai kunci warna
+                    'success' => Priority::Low,      // Menggunakan enum sebagai kunci warna
+                    'danger' => Priority::High,      // Menggunakan enum sebagai kunci warna
+                ])
+                ->searchable(),
+
+php artisan make:livewire-form UserInformations/EditProduct --edit
+
+
+Progress:
+- Memperbaiki UI Quiz ✅
+- Menampilkan gambar GIF jika 100✅
+- Menampilkan Nyawa✅
+- Menampilkan halaman Dashboard siswa✅
+- Mengubah urutan Quiz ke course✅
+- mengubah tipe data description ✅
+- Membuat fitur forum ✔
+- upload ke server ❌ (tunggu selesai fitur forum)
+
+Meeting Edulearn 28/02/25
+1. Pesan error
+2. Menampilkan asset gambar yg di student (avatar)
+3. Student info 404 -> server
+4. Classroom(student) kosong, kondisi classroom (teacher) belum memasukan course kedalam classroom ✔
+5. Menampilkan data sesuai dengan user yg telah login (untuk course pada classroom) ✔
+6. Tampilan dashboard yg perlu menampilkan shortcut classroom (student dan teacher)
+7. Informasi mengenai course yg belum di publish. ✔
+8. Pada forum ketika melakukan langsung post tanpa perlu refresh 
+9. Recursive refresh untuk beberapa input "create"
+10. Tambahkan UI loading ketika lagi proses render - tambahkan placeholder
+11. Badge dapat diberikan teacher per-course sebagai reward 
+12. Join classroom teacher  ✔
+13. Aspek UI terkait font dan warna
+14. Rubah Classroom jadi Course di Student 
+15. Teacher : join classroom, class custom, ganti Classroom jadi Class dan Course jadi Mata Kuliah (Subjek)
+
+
+
+
+
+untuk di hosting
+
+
+
+        's3' => [
+            'driver' => 's3',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => false,
+        ],
+
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Symbolic Links
+    |--------------------------------------------------------------------------
+    |
+    | Here you may configure the symbolic links that will be created when the
+    | `storage:link` Artisan command is executed. The array keys should be
+    | the locations of the links and the values should be their targets.
+    |
+    */
+
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
+    ],
+
+
+di .env
+ASSET_URL=/public
