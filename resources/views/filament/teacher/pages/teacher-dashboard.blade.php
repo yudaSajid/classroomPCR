@@ -1,3 +1,3 @@
 <x-filament-panels::page>
-    {{ $this->infolist }}
+    @livewire('teacher.dashboard')
 </x-filament-panels::page>
