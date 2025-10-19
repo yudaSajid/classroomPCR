@@ -37,7 +37,6 @@ class TeacherPanelProvider extends PanelProvider
             ->brandLogo(asset('storage/assets/logo_elearning.png'))
             ->brandLogoHeight('3rem')
             ->profile()
-            ->registration()
             ->maxContentWidth(MaxWidth::Full)
             ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->sidebarCollapsibleOnDesktop()

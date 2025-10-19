@@ -5,6 +5,7 @@ namespace App\Livewire\Courses;
 use App\Models\Chapter;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\Attributes\On;
 
 class MaterialSelection extends Component
 {
@@ -22,6 +23,14 @@ class MaterialSelection extends Component
         $this->userId = Auth::id();
         $this->loadData();
     }
+    // #[On('materialStatusUpdated')]
+    // #[On('quizCompleted')]       // <-- Tambahkan listener ini
+    // #[On('quizRetakeStarted')]
+
+    protected $listeners = [
+        'refreshLessonList' => '$refresh',
+        'materialStatusUpdated' => '$refresh',
+    ];
 
     private function loadData()
     {
