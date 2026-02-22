@@ -14,6 +14,7 @@ use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Select;
 use Filament\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -87,6 +88,11 @@ class PointsHistory extends Component implements HasForms, HasTable
                             ->label('Reason')
                             ->required()
                             ->maxLength(255),
+                        Select::make('course_id')
+                            ->label('Course')
+                            ->options($this->classroom->courses()->pluck('course_name', 'courses.id')->toArray())
+                            ->searchable()
+                            ->required(),
                     ])
                     ->action(function (array $data) {
                         try {
@@ -97,6 +103,7 @@ class PointsHistory extends Component implements HasForms, HasTable
                                         'giver_id' => Auth::id(),
                                         'points' => $data['points'],
                                         'reason' => $data['reason'],
+                                        'course_id' => $data['course_id'] ?? null,
                                         'assignment_id' => null, // Or link to a relevant entity if needed
                                     ]);
                                 }

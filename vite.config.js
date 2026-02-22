@@ -8,6 +8,8 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/js/app.js",
                 `resources/css/filament/student/theme.css`,
+
+                "resources/js/countdown-timer.js",
             ],
             refresh: true,
         }),

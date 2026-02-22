@@ -33,28 +33,32 @@
             <h2 class="text-2xl font-semibold text-gray-800 dark:text-white"> {{ $getRecord()->course_name }}</h2>
             <p class="mt-1 text-gray-600 dark:text-white">Last Progress:</p>
             <div class="flex items-center p-4 mt-2 bg-gray-100 rounded dark:bg-gray-600">
-                    @php
-    $totalMaterialsCompleted = $getRecord()->getTotalMaterialsCompletedByUser(Auth::user()->id);
-    $lastCompleted = $getRecord()->getLastCompletedMaterialByUser(Auth::user()->id);
-@endphp
-                <span class=" text-gray-800 text-sm font-medium px-2 py-0.5 rounded dark:text-white">{{$lastCompleted}}</span>
-                <span class="ml-3 text-sm text-gray-600 dark:text-white">{{$totalMaterialsCompleted }}/{{$getRecord()->total_materials}}
+                @php
+                    $totalMaterialsCompleted = $getRecord()->getTotalMaterialsCompletedByUser(Auth::user()->id);
+                    $lastCompleted = $getRecord()->getLastCompletedMaterialByUser(Auth::user()->id);
+                @endphp
+                <span
+                    class=" text-gray-800 text-sm font-medium px-2 py-0.5 rounded dark:text-white">{{ $lastCompleted }}</span>
+                <span
+                    class="ml-3 text-sm text-gray-600 dark:text-white">{{ $totalMaterialsCompleted }}/{{ $getRecord()->total_materials }}
                     materials</span>
                 {{-- <button
                     class="px-4 py-2 ml-auto text-sm font-semibold text-white transition duration-300 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700">Start
                     Learning</button> --}}
-            </div>  
+            </div>
             <div class="float-right py-4">
+                @if ($totalMaterialsCompleted == $getRecord()->total_materials)
                 {{-- <button
                     class="px-4 py-2 text-sm font-semibold transition duration-300 bg-white border rounded-lg text-fuchsia-500 hover:bg-fuchsia-100">Project</button> --}}
-                @if ($totalMaterialsCompleted == $getRecord()->total_materials)
-                    <a href="/path/to/your/certificate_download_route" class="btn btn-primary" download="certificate.pdf">
-                        Download Certificate
-                    </a>
+                    <x-custom-alert class="mt-4 mb-2" type="info" message="Pastikan anda telah mengisi data pendidikan pada Informations !"
+                    class="mt-4" />
+                    <a href="{{ route('certificate.download', $getRecord()) }}"
+                    class="px-4 py-2 mt-4 float-right text-sm font-semibold text-white transition duration-300 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700">
+                    <i class="fas fa-file-download"></i> Download Certificate
+                </a>
                 @else
-                    {{-- Optionally, display a message if the certificate isn't available yet --}}
                     <x-custom-alert type="info" message="Selesaikan modul untuk mendownload certificate"
-        class="mt-4" />
+                        class="mt-4" />
                 @endif
             </div>
         </div>

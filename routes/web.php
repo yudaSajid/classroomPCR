@@ -7,6 +7,7 @@ use App\Livewire\TakeQuiz;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use App\Models\Course;
+use App\Http\Controllers\CertificateController;
 
 Route::get('/', function () {
     try {
@@ -14,7 +15,7 @@ Route::get('/', function () {
 				->inRandomOrder()
 				->take(4)
 				->get();
-                        
+
         return view('welcome', compact('courses'));
     } catch (\Exception $e) {
         // If there's an error, return empty collection
@@ -22,6 +23,10 @@ Route::get('/', function () {
         return view('welcome', compact('courses'));
     }
 });
+
+Route::get('/certificate/download/{course}', [CertificateController::class, 'download'])
+    ->name('certificate.download')
+    ->middleware('auth');
 
 Route::get('/{course:course_slug}', CourseDetail::class)->name('course.show');
 
