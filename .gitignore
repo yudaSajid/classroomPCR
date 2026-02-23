@@ -12,3 +12,7 @@ Thumbs.db
 
 # Other ignored files (optional)
 .env
+
+# Build outputs (generated)
+/public/build/
+/.vite/
