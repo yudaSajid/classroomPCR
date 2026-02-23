@@ -18,7 +18,3 @@ Thumbs.db
 /.vite/
 
 # Storage: ignore everything under /storage except keep storage/app/public
-/storage/*
-!/storage/app/
-!/storage/app/public/
-!/storage/app/public/**
